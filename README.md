@@ -119,7 +119,7 @@ This skill organizes the review and decides what has to be true before you appro
 
 ## Acknowledgments
 
-The three-job framing was inspired by a talk by [grapeot](https://www.bilibili.com/video/BV1mRn66JERc/) on reviewing AI-written code.
+The three-job framing was inspired by [a public talk](https://www.bilibili.com/video/BV1mRn66JERc/) on reviewing AI-written code.
 
 ## License
 
