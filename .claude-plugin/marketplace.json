@@ -1,0 +1,14 @@
+{
+  "name": "ai-code-review-triage",
+  "description": "A Claude Code skill for reviewing AI-written pull requests: catch bugs, align context, own the sign-off.",
+  "owner": {
+    "name": "laulauraluo"
+  },
+  "plugins": [
+    {
+      "name": "ai-code-review-triage",
+      "source": "./",
+      "description": "Review AI-written PRs by splitting review into three jobs: catch bugs, align context, own the sign-off."
+    }
+  ]
+}
