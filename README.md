@@ -4,6 +4,10 @@
 
 **AI writes code faster than you can read it. Stop reading harder and review differently.**
 
+**English** · [简体中文](README.zh-CN.md)
+
+<img src="assets/social-preview.png" alt="AI Code Review Triage: catch bugs, align context, own the sign-off" width="760">
+
 A [Claude Code](https://claude.com/claude-code) skill that reviews AI-generated pull requests by splitting "reading the code" into three separate jobs.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -41,11 +45,13 @@ Low-risk PRs only run Step 1. High-risk PRs (production behavior, data, security
 
 ## What it catches that line-by-line review misses
 
-> A PR changes `SESSION_TIMEOUT = 30` to `SESSION_TIMEOUT = 30000`. Tests pass. The code is clean.
+> A PR changes `SESSION_TIMEOUT = 30` to `30000` and drops one line of unit conversion. Tests pass. The code is clean. A line-by-line reader approves it in 30 seconds.
 >
-> - **Step 1** (bug hunt) finds nothing. The code does what it says.
-> - **Step 2** writes `SESSION_TIMEOUT: 30 → 30000 (s)` and asks whether 8+ hours is plausible. It finds that the caller expects milliseconds, and that a mobile client hard-codes the old value.
-> - **Step 3** won't approve until there is a rollback path, and requires the approval comment to say what was verified.
+> - **Step 1** has a fresh-context sub-agent add a boundary test. Result: sessions now expire after **30 seconds**.
+> - **Step 2** checks history and callers. The same change was reverted once before, the mobile client hard-codes the old value, and the request was only for "remember me" users while the diff changes everyone.
+> - **Step 3** blocks the approval. Nobody can explain what the PR actually does.
+>
+> Full run: [examples/session-timeout-walkthrough.md](examples/session-timeout-walkthrough.md)
 
 ## Install
 
@@ -77,14 +83,15 @@ The skill triggers on its own and returns a report (illustrative example):
 ## Extend session lifetime for "remember me" · Risk: High
 
 ### 1. Bugs (independent fresh-context review)
-- No defects found. Tests, lint and type check pass.
+- [CONFIRMED] auth/session.py:3 — unit conversion dropped; sessions expire after 30 s. Repro: test_session_expires_after_timeout
 
 ### 2. Context
-- Magnitudes: SESSION_TIMEOUT 30 → 30000 (s) — suspicious, ~8.3 h; auth/session.py:42 compares it as ms
-- History / neighbors: mobile/config.ts hard-codes 30; a similar change was reverted 3 weeks ago
+- Magnitudes: SESSION_TIMEOUT 30 → 30000 (comment says min, code treats as ms) — suspicious
+- History / neighbors: reverted once before (a1b2c3d); mobile/src/config.ts hard-codes 30 min
+- Requirement match: asked for remember-me users only; diff changes everyone
 
 ### 3. Sign-off
-- Detection: auth error-rate alert · Rollback: feature flag `long_sessions`
+- Detection: login-rate and 401-rate alerts · Rollback: config revert
 - Recommendation: request changes
 - Verification scope: verified units and callers; did not load-test
 ```
@@ -98,6 +105,8 @@ The skill triggers on its own and returns a report (illustrative example):
 skills/
   ai-code-review-triage/
     SKILL.md           # the skill itself
+examples/
+  session-timeout-walkthrough.md   # end-to-end illustrative run
 ```
 
 ## Works well with
@@ -115,3 +124,11 @@ The three-job framing was inspired by a talk by [grapeot](https://www.bilibili.c
 ## License
 
 [MIT](LICENSE)
+
+---
+
+<div align="center">
+
+If this caught a bad merge for you, a ⭐ helps other reviewers find it.
+
+</div>
