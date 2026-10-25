@@ -70,6 +70,12 @@ cp -r ai-code-review-triage/skills/ai-code-review-triage ~/.claude/skills/
 
 skill 会自动触发，输出一份三段式报告：挑错 / 上下文 / 签字。
 
+## 常见问题
+
+[Review 指南与 FAQ](docs/review-ai-generated-code.md) 回答了：AI 写的 PR 该查什么、为什么测试通过仍会漏数据、如何核对 caller 和上游 contract。
+
+安装方式面向 Claude Code；可以 review Codex / Copilot / Cursor 写出的代码，但这不代表提供这些工具的 native integration。Skill 不替代 security scanner 或人的 merge 决策，教学案例也不代表生产验证结果。
+
 ## License
 
 [MIT](LICENSE)

@@ -98,6 +98,15 @@ The skill triggers on its own and returns a report (illustrative example):
 - Verification scope: verified units and callers; did not load-test
 ```
 
+## Review questions and limitations
+
+- [How do I review AI-generated code before merging?](docs/review-ai-generated-code.md#what-should-you-check-in-an-ai-written-pull-request)
+- [Why can passing tests miss incomplete exports?](docs/review-ai-generated-code.md#why-can-tests-pass-while-an-export-silently-loses-data)
+- [Can this review Codex, Copilot, or Cursor output?](docs/review-ai-generated-code.md#can-it-review-code-written-by-codex-copilot-or-cursor)
+- [Does it replace scanners or human review?](docs/review-ai-generated-code.md#does-it-replace-linters-security-scanners-or-human-review)
+
+The installation targets Claude Code. The workflow can review code from other agents; native integration with those tools is not provided.
+
 ## Repository layout
 
 ```
