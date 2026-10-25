@@ -53,6 +53,8 @@ Low-risk PRs only run Step 1. High-risk PRs (production behavior, data, security
 >
 > Full run: [examples/session-timeout-walkthrough.md](examples/session-timeout-walkthrough.md)
 
+A second runnable example follows a pagination change from `100` to `1000` rows per request: a capped API returns 100 rows, and the exporter silently stops with 150 of 250 rows missing. See [the pagination walkthrough](examples/pagination-limit-walkthrough.md) for the contract check, reproduction, and recovery scope. Both walkthroughs use invented scenarios.
+
 ## Install
 
 **As a plugin** (inside Claude Code):
@@ -106,7 +108,8 @@ skills/
   ai-code-review-triage/
     SKILL.md           # the skill itself
 examples/
-  session-timeout-walkthrough.md   # end-to-end illustrative run
+  session-timeout-walkthrough.md   # timeout units and requirement scope
+  pagination-limit-walkthrough.md # API contract mismatch, runnable repro
 ```
 
 ## Works well with

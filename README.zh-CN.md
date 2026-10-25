@@ -43,6 +43,8 @@ Agent 提 PR 的速度远超人逐行 review 的速度。更麻烦的是，读�
 >
 > 完整过程见 [examples/session-timeout-walkthrough.md](examples/session-timeout-walkthrough.md)。
 
+第二个例子：[分页 limit walkthrough](examples/pagination-limit-walkthrough.md)。每页从 `100` 改成 `1000`，但上游最多返回 100 条，caller 误判已经结束，250 条数据只导出 100 条。包含可直接运行的 Python repro、API contract 核对和恢复范围。两个 walkthrough 都是虚构教学案例。
+
 ## 安装
 
 **作为 plugin**（在 Claude Code 里）：
