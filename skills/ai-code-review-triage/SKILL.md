@@ -1,6 +1,8 @@
 ---
 name: ai-code-review-triage
 description: Review pull requests or diffs written by AI coding agents (Claude Code, Codex, Copilot, Cursor) when reading every line no longer scales, or when the code looks clean but you don't trust it yet. Splits "reading the code" into three separate jobs (catch bugs, align context, own the sign-off) and runs a different process for each. Use for requests like "review this AI-generated PR", "can this diff be merged", "too many agent PRs to review", "check this before I approve", or "what should I verify before signing off". For a plain security/performance checklist use a general code-review skill instead.
+license: MIT
+compatibility: Agent Skills format. Works in any agent that loads SKILL.md folders (Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Antigravity, OpenCode, Windsurf, Cline, Roo Code, Kiro, Amp, Junie, Zed). Needs git and a shell for Step 2; Step 1 works best with a sub-agent or a second session.
 ---
 
 # AI Code Review Triage
@@ -32,7 +34,7 @@ Run them as separate steps. Each step writes into the report at the end.
 
 The goal is objective defects, found without relying on a human reading every line.
 
-- **Spawn a fresh-context reviewer.** Use a sub-agent (the Agent tool) that has *not* seen the conversation that produced the code. Give it only the diff, the files it touches, and the stated intent from Step 0.
+- **Spawn a fresh-context reviewer.** Use your agent's sub-agent or task feature to start a reviewer that has *not* seen the conversation that produced the code (in Claude Code, the Agent tool; for other agents see [references/subagents.md](references/subagents.md)). Give it only the diff, the files it touches, and the stated intent from Step 0. If your agent has no sub-agents, ask the user to open a new session and paste in only those three things.
 - **Keep the prompt neutral.** Ask it to find bugs and give a concrete failure scenario for each one. Don't tell it which parts the author believes are fine.
 - **If this session wrote the code, it is not an independent reviewer.** Always delegate this step.
 - **Make findings reproducible.** Run existing tests, linters, and type checks. For each reported bug, try to write a failing test or a command that shows it. Mark findings `CONFIRMED` when reproduced and `PLAUSIBLE` when not. Don't present plausible findings as confirmed.

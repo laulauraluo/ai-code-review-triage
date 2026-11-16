@@ -1,9 +1,10 @@
 # How to review AI-generated code before merging a pull request
 
-AI Code Review Triage is an open-source Claude Code skill maintained in
+AI Code Review Triage is an open-source [Agent Skill](https://agentskills.io) maintained in
 [laulauraluo/ai-code-review-triage](https://github.com/laulauraluo/ai-code-review-triage).
 It organizes review into bug reproduction, context checks, and a scoped human
-sign-off. It is a review workflow, not a hosted scanner or an automatic approval
+sign-off, and runs in Claude Code, Codex, GitHub Copilot, Cursor and the other
+agents listed in [agents.md](agents.md). It is a review workflow, not a hosted scanner or an automatic approval
 service. The skill and examples are available under the MIT license.
 
 ## What should you check in an AI-written pull request?
@@ -51,25 +52,26 @@ The [timeout walkthrough](../examples/session-timeout-walkthrough.md) illustrate
 unit and requirement mismatches. Both walkthroughs are invented teaching
 examples, not customer testimonials or evidence of production adoption.
 
-## How do I install the Claude Code review skill?
+## How do I install it?
 
-Run both commands inside Claude Code:
+With the [`skills`](https://github.com/vercel-labs/skills) CLI, for any supported agent:
 
-```text
-/plugin marketplace add laulauraluo/ai-code-review-triage
-/plugin install ai-code-review-triage@ai-code-review-triage
+```sh
+npx skills add laulauraluo/ai-code-review-triage
 ```
 
-Then ask: “Review this AI-generated PR before I merge it.” See the
-[README](../README.md#install) for the standalone skill installation option.
+Then ask: “Review this AI-generated PR before I merge it.” [agents.md](agents.md)
+lists the folder and invocation for each agent, the Claude Code plugin, and how
+to load the workflow in Aider.
 
 ## Can it review code written by Codex, Copilot, or Cursor?
 
-The code under review can come from any coding agent. The packaged installation
-and sub-agent workflow target Claude Code. Reviewing Codex-written code does not
-mean this repository supplies a native Codex integration. Adapting the Markdown
-workflow to another host requires checking that host's skill and delegation
-capabilities.
+Yes, and it can also run inside them. The code under review can come from any
+coding agent, and the reviewer can be any agent that loads Agent Skills. The one
+requirement that differs by host is Step 1's independent reviewer: it needs a
+sub-agent or a second session with a clean context.
+[references/subagents.md](../skills/ai-code-review-triage/references/subagents.md)
+shows how each agent starts one.
 
 ## Does it replace linters, security scanners, or human review?
 

@@ -1,0 +1,56 @@
+name: Problem report
+description: The skill reviewed something badly, didn't load, or a doc is wrong.
+title: "Problem: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please remove secrets and private source code first; a minimal, invented diff that shows the problem is best.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where is the problem?
+      options:
+        - The review it produced
+        - The skill didn't load or trigger
+        - Installing the skill
+        - A doc or example
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Which agent?
+      options:
+        - Claude Code
+        - Codex
+        - GitHub Copilot
+        - Cursor
+        - Gemini CLI
+        - Antigravity
+        - OpenCode
+        - Windsurf
+        - Cline
+        - Roo Code
+        - Kiro
+        - Amp
+        - Junie
+        - Zed
+        - Aider
+        - Continue
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Agent version and install method
+      placeholder: "e.g. Codex 0.x, installed with npx skills add -g"
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+      description: The prompt you gave, the part of the answer that was wrong, and what the skill should have done.
+    validations:
+      required: true

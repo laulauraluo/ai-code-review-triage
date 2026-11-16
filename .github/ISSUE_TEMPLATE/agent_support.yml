@@ -1,0 +1,25 @@
+name: Agent support
+description: Add an agent, or fix a path or command for one.
+title: "Agent: "
+labels: ["agents"]
+body:
+  - type: input
+    id: agent
+    attributes:
+      label: Agent
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Folders and how to call a skill
+      description: User folder, project folder, how the agent calls a skill, and how it starts a sub-agent if it has one.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Link to the agent's documentation
+      description: Paths without a source are listed as unverified.
+    validations:
+      required: true
