@@ -9,7 +9,13 @@
 一个 [Agent Skill](https://agentskills.io)：把「读代码」拆成三件事，专门用来 review AI 写的 PR。<br>
 可以在 Claude Code、Codex、GitHub Copilot、Cursor、Gemini CLI、Antigravity、OpenCode、Windsurf、Cline、Roo Code、Kiro、Amp、Junie、Zed 里用，在 Aider 里可以作为只读 context 加载。
 
-[English](README.md) · **简体中文**
+<a href="README.md" title="English" aria-label="English">🇬🇧</a> ·
+<strong title="简体中文" aria-label="简体中文">🇨🇳</strong> ·
+<a href="README.ja.md" title="日本語" aria-label="日本語">🇯🇵</a> ·
+<a href="README.ko.md" title="한국어" aria-label="한국어">🇰🇷</a> ·
+<a href="README.es.md" title="Español" aria-label="Español">🇪🇸</a> ·
+<a href="README.pt-BR.md" title="Português (Brasil)" aria-label="Português (Brasil)">🇧🇷</a> ·
+<a href="README.fr.md" title="Français" aria-label="Français">🇫🇷</a>
 
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-1b1b19?style=flat-square)](https://agentskills.io/specification)
 [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-d97757?style=flat-square)](#claude-code-plugin)
