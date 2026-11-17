@@ -1,6 +1,6 @@
 {
   "name": "ai-code-review-triage",
-  "description": "A Claude Code skill for reviewing AI-written pull requests: catch bugs, align context, own the sign-off.",
+  "description": "An Agent Skill for reviewing AI-written pull requests: catch bugs, align context, own the sign-off.",
   "owner": {
     "name": "laulauraluo"
   },

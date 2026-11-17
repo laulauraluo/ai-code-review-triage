@@ -1,0 +1,29 @@
+{
+  "skill_name": "ai-code-review-triage",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Here's the diff for PR #482. Cursor wrote it to raise our retry count from 3 to 10 on the payments client. Tests pass. Can I approve it?",
+      "expected_output": "Triage marks it High risk (money, production behavior) and runs all three steps. Step 1 hands only the diff, the touched files and a one-sentence intent to a fresh-context reviewer and marks each finding CONFIRMED or PLAUSIBLE. Step 2 writes a magnitude line for the retry count (attempts versus retries, total timeout budget) and asks whether the payment call is idempotent, so a retry cannot charge twice; it searches history and callers with git log -S and grep. Step 3 states detection, rollback and accepted risks. The answer does not approve on passing tests alone, and the report ends with an explicit verification scope.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Copilot opened a PR that only fixes typos in docs/ and the README. Do I need the full review process?",
+      "expected_output": "Triage marks it Low risk and runs Step 1 only. It confirms the diff touches only docs (no config, constants or code), and says Steps 2 and 3 are skipped and why. It does not invent context findings for a docs-only change.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I wrote this change with you in this session. Now review it before I merge.",
+      "expected_output": "The agent says it cannot be the independent reviewer for code it wrote in this session, and delegates Step 1 to a sub-agent with a clean context (or, if the agent has none, asks the user to open a new session with only the diff, the files and the intent). It does not review its own code and call that review independent.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Review this AI-generated PR: it changes CACHE_TTL from 60 to 3600 in config/cache.py. The description says 'make the product page faster'.",
+      "expected_output": "Step 2 writes the magnitude line `CACHE_TTL: 60 → 3600 (s)`, a 60x increase, and asks what freshness the product page needs (prices, stock) and whether invalidation paths exist. It checks history for a previous TTL change or revert and searches for other readers of CACHE_TTL. The requirement match notes that 'faster' does not say how stale the page may be. The recommendation is not a blanket approve.",
+      "files": []
+    }
+  ]
+}

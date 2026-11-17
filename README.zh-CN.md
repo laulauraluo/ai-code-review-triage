@@ -4,14 +4,17 @@
 
 **AI 写代码比你读得快。别再硬读了，换个方式 review。**
 
-一个 [Claude Code](https://claude.com/claude-code) skill：把「读代码」拆成三件事，专门用来 review AI 写的 PR。
+一个 [Agent Skill](https://agentskills.io)：把「读代码」拆成三件事，专门用来 review AI 写的 PR。<br>
+可以在 Claude Code、Codex、GitHub Copilot、Cursor、Gemini CLI、Antigravity、OpenCode、Windsurf、Cline、Roo Code、Kiro、Amp、Junie、Zed 里用，在 Aider 里可以作为只读 context 加载。
 
 [English](README.md) · **简体中文**
 
-<img src="assets/social-preview.png" alt="AI Code Review Triage: catch bugs, align context, own the sign-off" width="760">
+[![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-1b1b19?style=flat-square)](https://agentskills.io/specification)
+[![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-d97757?style=flat-square)](#claude-code-plugin)
+[![License: MIT](https://img.shields.io/badge/license-MIT-1b1b19?style=flat-square)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.1.0-1b1b19?style=flat-square)](CHANGELOG.md)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-skill-d97757)
+<img src="assets/social-preview.png" alt="AI Code Review Triage: catch bugs, align context, own the sign-off" width="760">
 
 </div>
 
@@ -20,6 +23,22 @@
 ## 问题
 
 Agent 提 PR 的速度远超人逐行 review 的速度。更麻烦的是，读得再认真也不一定有用：AI 写的代码表面很整齐，真正的问题藏得深，逐行读完也看不出来。「不读，出事就回滚」技术上可行，但出了事背锅的还是人。
+
+## 快速开始
+
+```sh
+npx skills add laulauraluo/ai-code-review-triage
+```
+
+[`skills`](https://github.com/vercel-labs/skills) CLI 会问你要装给哪些 agent。加 `-g` 装到用户目录（默认装到当前项目），加 `-a <agent>` 跳过提问，例如 `-a claude-code`、`-a codex`、`-a github-copilot`、`-a cursor`。
+
+然后在 agent 里说：
+
+```text
+帮我 review 这个 AI 写的 PR，看能不能 merge。
+```
+
+skill 会按描述自动触发。多数 agent 也支持 `/ai-code-review-triage` 直接调用，Codex 用 `$ai-code-review-triage`。每个 agent 的调用方式见 [docs/agents.md](docs/agents.md)。
 
 ## 思路
 
@@ -31,7 +50,7 @@ Agent 提 PR 的速度远超人逐行 review 的速度。更麻烦的是，读�
 | **对齐上下文** | 这个改动放在这个产品、这个时间点，对吗？ | 人，从 diff 看不到的角度核对 |
 | **担责** | 我愿意在上面签字吗？ | approve 的人，并写明核对范围 |
 
-低风险 PR 只跑第一步；高风险 PR（线上行为、数据、安全、钱）三步全跑。
+低风险 PR 只跑第一步；中风险跑前两步；高风险 PR（线上行为、数据、安全、钱）三步全跑。
 
 ## 一个例子
 
@@ -47,34 +66,66 @@ Agent 提 PR 的速度远超人逐行 review 的速度。更麻烦的是，读�
 
 ## 安装
 
-**作为 plugin**（在 Claude Code 里）：
+skill 本体是 [`skills/ai-code-review-triage/`](skills/ai-code-review-triage) 这个文件夹，下面每个 agent 都原样加载它，只是放的位置不同。完整表格（每个 agent 读哪些目录、怎么调用、官方文档出处）见 [docs/agents.md](docs/agents.md)。
 
-```
-/plugin marketplace add laulauraluo/ai-code-review-triage
-/plugin install ai-code-review-triage@ai-code-review-triage
-```
+| Agent | skills CLI | 或手动拷到（用户 · 项目） |
+|---|---|---|
+| Claude Code | `-a claude-code` | `~/.claude/skills/` · `.claude/skills/` |
+| Codex | `-a codex` | `~/.agents/skills/` · `.agents/skills/` |
+| GitHub Copilot | `-a github-copilot` | `~/.copilot/skills/` · `.github/skills/` |
+| Cursor | `-a cursor` | `~/.cursor/skills/` · `.cursor/skills/` |
+| Gemini CLI | `-a gemini-cli` | `~/.gemini/skills/` · `.gemini/skills/` |
+| Antigravity | `-a antigravity` | `~/.gemini/config/skills/` · `.agents/skills/` |
+| OpenCode | `-a opencode` | `~/.config/opencode/skills/` · `.opencode/skills/` |
+| Windsurf | `-a windsurf` | `~/.config/devin/skills/` · `.devin/skills/` |
+| Cline | `-a cline` | `~/.cline/skills/` · `.cline/skills/` |
+| Roo Code | `-a roo` | `~/.roo/skills/` · `.roo/skills/` |
+| Kiro | `-a kiro-cli` | `~/.kiro/skills/` · `.kiro/skills/` |
+| Amp | `-a amp` | `~/.config/agents/skills/` · `.agents/skills/` |
+| Junie | `-a junie` | `~/.junie/skills/` · `.junie/skills/` |
+| Zed | `-a zed` | `~/.agents/skills/` · `.agents/skills/` |
+| Aider | — | 在 `.aider.conf.yml` 里用 `read:` 加载（[做法](docs/agents.md#aider)） |
+| Continue | — | 未核实，作为 rule 加载（[做法](docs/agents.md#continue)） |
 
-**作为单独的 skill：**
+**用 git 手动装：**
 
-```bash
+```sh
 git clone https://github.com/laulauraluo/ai-code-review-triage.git
 cp -r ai-code-review-triage/skills/ai-code-review-triage ~/.claude/skills/
 ```
 
+把 `~/.claude/skills/` 换成表里对应 agent 的目录即可。
+
+<a id="claude-code-plugin"></a>**Claude Code plugin**（在 Claude Code 里）：
+
+```text
+/plugin marketplace add laulauraluo/ai-code-review-triage
+/plugin install ai-code-review-triage@ai-code-review-triage
+```
+
 ## 用法
 
-直接对 Claude Code 说：
+直接对 agent 说：
 
 - 「帮我 review 这个 AI 写的 PR，看能不能 merge」
+- 「这个 diff 是 Codex 写的，能 merge 吗？」
 - 「我要 approve #123 了，签字前该核对什么？」
 
-skill 会自动触发，输出一份三段式报告：挑错 / 上下文 / 签字。
+skill 会输出一份三段式报告：挑错 / 上下文 / 签字，最后写明核对过什么、没核对什么。更多测试 prompt 见 [evals/evals.json](evals/evals.json)。
 
-## 常见问题
+第一步要求一个没见过写代码过程的 reviewer。各 agent 怎么开 fresh-context sub-agent，没有 sub-agent 时怎么办，见 [references/subagents.md](skills/ai-code-review-triage/references/subagents.md)。
+
+## 局限
+
+- 这是 review 流程，不是 scanner。linter、type check、security 工具放在第一步里跑，skill 不替代它们，也不替代人的 merge 决策。
+- 两个例子是虚构教学案例，不代表测出来的检出率。
+- 刻意比扫一眼慢：高风险 PR 要跑 sub-agent、测试、查历史、写签字范围。
 
 [Review 指南与 FAQ](docs/review-ai-generated-code.md) 回答了：AI 写的 PR 该查什么、为什么测试通过仍会漏数据、如何核对 caller 和上游 contract。
 
-安装方式面向 Claude Code；可以 review Codex / Copilot / Cursor 写出的代码，但这不代表提供这些工具的 native integration。Skill 不替代 security scanner 或人的 merge 决策，教学案例也不代表生产验证结果。
+## 参与贡献
+
+欢迎 issue 和 PR，先读 [CONTRIBUTING.md](CONTRIBUTING.md)。改动记录见 [CHANGELOG.md](CHANGELOG.md)。
 
 ## License
 
