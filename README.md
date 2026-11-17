@@ -170,7 +170,11 @@ You get a report like this (from the invented timeout example):
 - Detection: login-rate and 401-rate alerts · Rollback: config revert
 - Recommendation: request changes
 - Verification scope: verified units and callers; did not load-test
+
+<sub>Reviewed with [Looks Good to AI](https://github.com/laulauraluo/looks-good-to-ai)</sub>
 ```
+
+The last line credits the skill when you paste the report into a PR. Ask the agent to leave it out if you don't want it.
 
 <details>
 <summary><b>More prompts</b>, from the skill's <a href="evals/evals.json">evals</a></summary>
