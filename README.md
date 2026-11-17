@@ -136,6 +136,15 @@ Swap `~/.claude/skills/` for any other folder in the table. For a project instal
 
 </details>
 
+<details>
+<summary><b>On every pull request (GitHub Actions)</b></summary>
+
+<br>
+
+A reusable workflow runs the skill on each pull request and posts the report as a comment. Setup takes three steps: [docs/github-action.md](docs/github-action.md).
+
+</details>
+
 <details id="claude-code-plugin">
 <summary><b>Claude Code plugin</b></summary>
 

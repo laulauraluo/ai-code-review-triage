@@ -1,0 +1,39 @@
+# Reusable workflow: review a pull request with the Looks Good to AI skill
+# and post the report as one PR comment. Call it from any repository; see
+# docs/github-action.md.
+name: Looks Good to AI review
+
+on:
+  workflow_call:
+    secrets:
+      ANTHROPIC_API_KEY:
+        required: true
+
+jobs:
+  review:
+    # Secrets are not available to pull requests from forks, so skip them.
+    if: github.event.pull_request.head.repo.full_name == github.repository && !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0 # Step 2 searches git history
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          plugin_marketplaces: https://github.com/laulauraluo/looks-good-to-ai.git
+          plugins: looks-good-to-ai@looks-good-to-ai
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+
+            Review this pull request with the looks-good-to-ai skill. Triage the risk first and run only the steps that tier needs.
+            For Step 1, use a sub-agent that sees only the diff and the PR description.
+            Post the finished report as a single PR comment with `gh pr comment`. Do not approve, request changes or push commits.
+          claude_args: |
+            --allowedTools "Task,Read,Grep,Glob,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(git log:*),Bash(git show:*),Bash(git diff:*),Bash(grep:*)"

@@ -1,0 +1,14 @@
+name: Review PRs with Looks Good to AI
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+jobs:
+  review:
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    uses: laulauraluo/looks-good-to-ai/.github/workflows/review.yml@main
+    secrets: inherit
