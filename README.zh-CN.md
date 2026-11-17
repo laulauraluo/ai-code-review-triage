@@ -12,9 +12,9 @@
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-1b1b19?style=flat-square)](https://agentskills.io/specification)
 [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-d97757?style=flat-square)](#claude-code-plugin)
 [![License: MIT](https://img.shields.io/badge/license-MIT-1b1b19?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.1.0-1b1b19?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.2.0-1b1b19?style=flat-square)](CHANGELOG.md)
 
-<img src="assets/social-preview.png" alt="AI Code Review Triage: catch bugs, align context, own the sign-off" width="760">
+<img src="assets/before-after.svg" alt="同一个 AI 写的 PR：逐行 review 30 秒就 approve，上线后 session 30 秒过期；AI Code Review Triage 发现单位换算被删、之前被 revert 过、移动端写死旧值，要求修改" width="820">
 
 </div>
 
@@ -31,6 +31,15 @@ npx skills add laulauraluo/ai-code-review-triage
 ```
 
 [`skills`](https://github.com/vercel-labs/skills) CLI 会问你要装给哪些 agent。加 `-g` 装到用户目录（默认装到当前项目），加 `-a <agent>` 跳过提问，例如 `-a claude-code`、`-a codex`、`-a github-copilot`、`-a cursor`。
+
+也可以用 agent 自带的安装方式：
+
+| Agent | 命令 |
+|---|---|
+| Claude Code | `/plugin marketplace add laulauraluo/ai-code-review-triage`，再 `/plugin install ai-code-review-triage@ai-code-review-triage` |
+| Codex | `codex plugin marketplace add laulauraluo/ai-code-review-triage`，再 `codex plugin add ai-code-review-triage@ai-code-review-triage` |
+| GitHub Copilot CLI | `copilot plugin marketplace add laulauraluo/ai-code-review-triage`，再 `copilot plugin install ai-code-review-triage@ai-code-review-triage` |
+| Gemini CLI | `gemini extensions install https://github.com/laulauraluo/ai-code-review-triage` |
 
 然后在 agent 里说：
 
@@ -78,7 +87,7 @@ skill 本体是 [`skills/ai-code-review-triage/`](skills/ai-code-review-triage) 
 | Antigravity | `-a antigravity` | `~/.gemini/config/skills/` · `.agents/skills/` |
 | OpenCode | `-a opencode` | `~/.config/opencode/skills/` · `.opencode/skills/` |
 | Windsurf | `-a windsurf` | `~/.config/devin/skills/` · `.devin/skills/` |
-| Cline | `-a cline` | `~/.cline/skills/` · `.cline/skills/` |
+| Cline | 手动拷贝（[原因](docs/agents.md#cline)） | `~/.cline/skills/` · `.cline/skills/` |
 | Roo Code | `-a roo` | `~/.roo/skills/` · `.roo/skills/` |
 | Kiro | `-a kiro-cli` | `~/.kiro/skills/` · `.kiro/skills/` |
 | Amp | `-a amp` | `~/.config/agents/skills/` · `.agents/skills/` |

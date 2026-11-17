@@ -2,6 +2,17 @@
 
 All notable changes to AI Code Review Triage are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-11-17
+
+### Added
+
+- Native installs, each tested against this repository: Codex (`codex plugin marketplace add`), GitHub Copilot CLI (`copilot plugin marketplace add`) and Gemini CLI (`gemini extensions install`). Codex and Copilot CLI reuse the existing `.claude-plugin/` manifests; Gemini CLI gets a `gemini-extension.json`.
+- A before/after image at the top of both READMEs.
+
+### Changed
+
+- Cline is installed by hand: the skills CLI puts it in `.agents/skills/`, which Cline does not read.
+
 ## [1.1.0] - 2026-11-15
 
 ### Added

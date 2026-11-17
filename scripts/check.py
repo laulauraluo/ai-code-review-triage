@@ -17,6 +17,11 @@ if not 1 <= len(desc) <= 1024:
 if len(fm.get("compatibility", "")) > 500:
     errors.append("compatibility is over 500 chars")
 
+ext = json.loads((root / "gemini-extension.json").read_text())
+plugin = json.loads((root / ".claude-plugin/plugin.json").read_text())
+if (ext.get("name"), ext.get("version")) != (name, plugin["version"]):
+    errors.append("gemini-extension.json name/version must match the skill name and plugin.json version")
+
 for e in json.loads((root / "evals/evals.json").read_text())["evals"]:
     if not e.get("prompt") or not e.get("expected_output"):
         errors.append(f"eval {e.get('id')} needs prompt and expected_output")
