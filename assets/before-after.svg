@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" font-family="ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <title>Before and after: the same AI-written PR, read line by line versus reviewed with AI Code Review Triage</title>
+  <rect width="960" height="400" rx="16" fill="#faf9f5"/>
+
+  <!-- shared diff -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15">
+    <rect x="32" y="28" width="896" height="74" rx="10" fill="#1b1b19"/>
+    <text x="52" y="58" fill="#e8a39b">-  SESSION_TIMEOUT = 30            # minutes</text>
+    <text x="52" y="84" fill="#9fd3a8">+  SESSION_TIMEOUT = 30000         # minutes</text>
+    <text x="560" y="58" fill="#8a8a85">auth/session.py · tests pass ✓</text>
+    <text x="560" y="84" fill="#8a8a85">written by an AI agent</text>
+  </g>
+
+  <!-- before -->
+  <rect x="32" y="122" width="436" height="250" rx="12" fill="#ffffff" stroke="#d9d6cc"/>
+  <text x="56" y="158" font-size="13" font-weight="700" fill="#8a8a85" letter-spacing="1.5">LINE-BY-LINE REVIEW</text>
+  <text x="56" y="198" font-size="17" fill="#1b1b19">Code is clean. Tests pass.</text>
+  <text x="56" y="226" font-size="17" fill="#1b1b19">Looks like a simple config bump.</text>
+  <rect x="56" y="256" width="170" height="40" rx="8" fill="#e9f3ea"/>
+  <text x="74" y="282" font-size="17" font-weight="700" fill="#2f6b3a">✓ Approved, 30 s</text>
+  <text x="56" y="340" font-size="15" fill="#b23b2e">Ships: every session expires after 30 seconds.</text>
+
+  <!-- after -->
+  <rect x="492" y="122" width="436" height="250" rx="12" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+  <text x="516" y="158" font-size="13" font-weight="700" fill="#d97757" letter-spacing="1.5">AI CODE REVIEW TRIAGE · RISK: HIGH</text>
+  <text x="516" y="196" font-size="15" fill="#1b1b19"><tspan font-weight="700">1 · Catch bugs</tspan>  fresh-context reviewer adds a</text>
+  <text x="516" y="218" font-size="15" fill="#1b1b19">boundary test: unit conversion dropped</text>
+  <text x="516" y="250" font-size="15" fill="#1b1b19"><tspan font-weight="700">2 · Align context</tspan>  reverted once before;</text>
+  <text x="516" y="272" font-size="15" fill="#1b1b19">mobile hard-codes 30 min; asked for one group</text>
+  <text x="516" y="304" font-size="15" fill="#1b1b19"><tspan font-weight="700">3 · Own the sign-off</tspan>  nobody can explain it</text>
+  <rect x="516" y="320" width="196" height="36" rx="8" fill="#fbe9e4"/>
+  <text x="532" y="344" font-size="16" font-weight="700" fill="#b23b2e">✕ Request changes</text>
+</svg>

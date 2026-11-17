@@ -16,6 +16,19 @@ npx skills add laulauraluo/ai-code-review-triage -g -a codex -a cursor
 
 The `-a` ids are in the table below and in the CLI's [agent list](https://github.com/vercel-labs/skills/blob/main/docs/agents.md). The CLI's folders sometimes differ from the ones an agent documents first, but each agent reads the CLI's folder too.
 
+## With the agent's own installer
+
+Four agents can install the repository directly. Each command was run against this repository on 2026-11-17.
+
+| Agent | Commands | Source |
+|---|---|---|
+| **Claude Code** | `/plugin marketplace add laulauraluo/ai-code-review-triage`, then `/plugin install ai-code-review-triage@ai-code-review-triage` | [Plugins](https://code.claude.com/docs/en/plugins) |
+| **Codex** | `codex plugin marketplace add laulauraluo/ai-code-review-triage`, then `codex plugin add ai-code-review-triage@ai-code-review-triage` | [Build plugins](https://developers.openai.com/codex/plugins/build) |
+| **GitHub Copilot CLI** | `copilot plugin marketplace add laulauraluo/ai-code-review-triage`, then `copilot plugin install ai-code-review-triage@ai-code-review-triage` | [CLI plugin reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference) |
+| **Gemini CLI** | `gemini extensions install https://github.com/laulauraluo/ai-code-review-triage` | [Extensions](https://geminicli.com/docs/extensions/reference/) |
+
+Codex and Copilot CLI read the same `.claude-plugin/` manifests as Claude Code. Gemini CLI reads `gemini-extension.json` and finds the skill under `skills/`. Copilot CLI also accepts `copilot plugin install laulauraluo/ai-code-review-triage`, but warns that direct installs are deprecated.
+
 ## By hand
 
 Copy or clone the skill folder so that `SKILL.md` ends up at `<skills folder>/ai-code-review-triage/SKILL.md`:
@@ -46,7 +59,7 @@ For a project install, commit the folder so your team gets it too.
 
 Notes:
 
-- **Cline.** The skills CLI installs Cline skills to `.agents/skills/`, which Cline's own page does not list. If Cline does not see the skill, move it to `.cline/skills/`.
+- <a id="cline"></a>**Cline.** The skills CLI installs Cline skills to `.agents/skills/`, which [Cline's documentation](https://docs.cline.bot/customization/skills) does not list (it lists `.cline/skills/`, `.clinerules/skills/` and `.claude/skills/`). Copy the folder by hand to `.cline/skills/` or `~/.cline/skills/`.
 - **Gemini CLI.** Its documentation carries a notice that, for unpaid and Google One users, Gemini CLI was replaced by Antigravity CLI on 2026-06-18. Use the Antigravity row in that case.
 - **Codex.** `agents/openai.yaml` in the skill folder only sets the display name for the Codex and ChatGPT apps. Codex works without it.
 

@@ -1,0 +1,5 @@
+{
+  "name": "ai-code-review-triage",
+  "version": "1.2.0",
+  "description": "Review AI-written PRs by splitting review into three jobs: catch bugs, align context, own the sign-off."
+}

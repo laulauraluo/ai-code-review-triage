@@ -12,7 +12,7 @@ Runs in Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Antigravity, Ope
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-1b1b19?style=flat-square)](https://agentskills.io/specification)
 [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-d97757?style=flat-square)](#claude-code-plugin)
 [![License: MIT](https://img.shields.io/badge/license-MIT-1b1b19?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.1.0-1b1b19?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.2.0-1b1b19?style=flat-square)](CHANGELOG.md)
 [![CI](https://github.com/laulauraluo/ai-code-review-triage/actions/workflows/ci.yml/badge.svg)](https://github.com/laulauraluo/ai-code-review-triage/actions/workflows/ci.yml)
 
 <a href="#quick-start">Quick start</a> ·
@@ -23,7 +23,7 @@ Runs in Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Antigravity, Ope
 <a href="#how-it-works">How it works</a> ·
 <a href="#limits">Limits</a>
 
-<img src="assets/social-preview.png" alt="AI Code Review Triage: catch bugs, align context, own the sign-off" width="760">
+<img src="assets/before-after.svg" alt="The same AI-written PR: line-by-line review approves it in 30 seconds and ships 30-second sessions; AI Code Review Triage catches the dropped unit conversion, a past revert and a hard-coded mobile value, and requests changes" width="820">
 
 </div>
 
@@ -40,6 +40,15 @@ npx skills add laulauraluo/ai-code-review-triage
 ```
 
 The [`skills`](https://github.com/vercel-labs/skills) CLI asks which agents to set up. Add `-g` to install for your user instead of this project, and `-a <agent>` to skip the question (`-a claude-code`, `-a codex`, `-a github-copilot`, `-a cursor`, …).
+
+Or use the agent's own installer:
+
+| Agent | Command |
+|---|---|
+| Claude Code | `/plugin marketplace add laulauraluo/ai-code-review-triage` then `/plugin install ai-code-review-triage@ai-code-review-triage` |
+| Codex | `codex plugin marketplace add laulauraluo/ai-code-review-triage` then `codex plugin add ai-code-review-triage@ai-code-review-triage` |
+| GitHub Copilot CLI | `copilot plugin marketplace add laulauraluo/ai-code-review-triage` then `copilot plugin install ai-code-review-triage@ai-code-review-triage` |
+| Gemini CLI | `gemini extensions install https://github.com/laulauraluo/ai-code-review-triage` |
 
 Then, in your agent:
 
@@ -94,7 +103,7 @@ The skill is the folder [`skills/ai-code-review-triage/`](skills/ai-code-review-
 | Antigravity | `-a antigravity` | `~/.gemini/config/skills/` · `.agents/skills/` |
 | OpenCode | `-a opencode` | `~/.config/opencode/skills/` · `.opencode/skills/` |
 | Windsurf | `-a windsurf` | `~/.config/devin/skills/` · `.devin/skills/` |
-| Cline | `-a cline` | `~/.cline/skills/` · `.cline/skills/` |
+| Cline | copy by hand ([why](docs/agents.md#cline)) | `~/.cline/skills/` · `.cline/skills/` |
 | Roo Code | `-a roo` | `~/.roo/skills/` · `.roo/skills/` |
 | Kiro | `-a kiro-cli` | `~/.kiro/skills/` · `.kiro/skills/` |
 | Amp | `-a amp` | `~/.config/agents/skills/` · `.agents/skills/` |
@@ -213,7 +222,8 @@ ai-code-review-triage/
 ├── examples/                       two invented end-to-end walkthroughs
 ├── evals/evals.json                test prompts and expected answers
 ├── scripts/check.py                the checks CI runs
-├── .claude-plugin/                 Claude Code plugin and marketplace manifests
+├── .claude-plugin/                 plugin and marketplace manifests (Claude Code, Codex, Copilot CLI)
+├── gemini-extension.json           Gemini CLI extension manifest
 └── .github/                        CI, issue forms, PR template
 ```
 
