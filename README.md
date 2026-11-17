@@ -31,7 +31,7 @@ Runs in Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Antigravity, Ope
 <a href="#how-it-works">How it works</a> ·
 <a href="#limits">Limits</a>
 
-<img src="assets/before-after.svg" alt="The same AI-written PR: line-by-line review approves it in 30 seconds and ships 30-second sessions; Looks Good to AI catches the dropped unit conversion, a past revert and a hard-coded mobile value, and requests changes" width="820">
+<img src="assets/before-after.svg" alt="An AI-written PR whose tests pass and whose diff looks clean. Looks Good to AI finds four problems: a dropped unit conversion hidden in the diff, a past revert, a mobile client that hard-codes the old value, and a requirement mismatch. Read line by line, it logs every user out after 30 seconds; with the skill, it is blocked before merge" width="820">
 
 </div>
 
