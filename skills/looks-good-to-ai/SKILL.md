@@ -1,11 +1,11 @@
 ---
-name: ai-code-review-triage
+name: looks-good-to-ai
 description: Review pull requests or diffs written by AI coding agents (Claude Code, Codex, Copilot, Cursor) when reading every line no longer scales, or when the code looks clean but you don't trust it yet. Splits "reading the code" into three separate jobs (catch bugs, align context, own the sign-off) and runs a different process for each. Use for requests like "review this AI-generated PR", "can this diff be merged", "too many agent PRs to review", "check this before I approve", or "what should I verify before signing off". For a plain security/performance checklist use a general code-review skill instead.
 license: MIT
 compatibility: Agent Skills format. Works in any agent that loads SKILL.md folders (Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Antigravity, OpenCode, Windsurf, Cline, Roo Code, Kiro, Amp, Junie, Zed). Needs git and a shell for Step 2; Step 1 works best with a sub-agent or a second session.
 ---
 
-# AI Code Review Triage
+# Looks Good to AI
 
 AI agents write code faster than humans can read it. Line-by-line review stops scaling, and it also stops working: agent-written code is tidy on the surface, so the real problems hide well enough that you can read every line and still miss them. Skipping review and rolling back when something breaks is technically possible, but a human still answers for the incident.
 

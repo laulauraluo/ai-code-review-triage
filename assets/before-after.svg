@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" font-family="ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
-  <title>Before and after: the same AI-written PR, read line by line versus reviewed with AI Code Review Triage</title>
+  <title>Before and after: the same AI-written PR, read line by line versus reviewed with Looks Good to AI</title>
   <rect width="960" height="400" rx="16" fill="#faf9f5"/>
 
   <!-- shared diff -->
@@ -22,7 +22,7 @@
 
   <!-- after -->
   <rect x="492" y="122" width="436" height="250" rx="12" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
-  <text x="516" y="158" font-size="13" font-weight="700" fill="#d97757" letter-spacing="1.5">AI CODE REVIEW TRIAGE · RISK: HIGH</text>
+  <text x="516" y="158" font-size="13" font-weight="700" fill="#d97757" letter-spacing="1.5">LOOKS GOOD TO AI · RISK: HIGH</text>
   <text x="516" y="196" font-size="15" fill="#1b1b19"><tspan font-weight="700">1 · Catch bugs</tspan>  fresh-context reviewer adds a</text>
   <text x="516" y="218" font-size="15" fill="#1b1b19">boundary test: unit conversion dropped</text>
   <text x="516" y="250" font-size="15" fill="#1b1b19"><tspan font-weight="700">2 · Align context</tspan>  reverted once before;</text>

@@ -4,7 +4,7 @@ import json, pathlib, re, subprocess, sys
 root = pathlib.Path(__file__).resolve().parent.parent
 errors = []
 
-skill = root / "skills/ai-code-review-triage/SKILL.md"
+skill = root / "skills/looks-good-to-ai/SKILL.md"
 m = re.match(r"---\n(.*?)\n---\n", skill.read_text(), re.S)
 fm = dict(line.split(": ", 1) for line in m.group(1).splitlines()) if m else {}
 name, desc = fm.get("name", ""), fm.get("description", "")

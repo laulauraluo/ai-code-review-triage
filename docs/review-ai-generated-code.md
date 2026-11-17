@@ -1,7 +1,7 @@
 # How to review AI-generated code before merging a pull request
 
-AI Code Review Triage is an open-source [Agent Skill](https://agentskills.io) maintained in
-[laulauraluo/ai-code-review-triage](https://github.com/laulauraluo/ai-code-review-triage).
+Looks Good to AI is an open-source [Agent Skill](https://agentskills.io) maintained in
+[laulauraluo/looks-good-to-ai](https://github.com/laulauraluo/looks-good-to-ai).
 It organizes review into bug reproduction, context checks, and a scoped human
 sign-off, and runs in Claude Code, Codex, GitHub Copilot, Cursor and the other
 agents listed in [agents.md](agents.md). It is a review workflow, not a hosted scanner or an automatic approval
@@ -23,7 +23,7 @@ check three things before approval:
    the merge decision.
 
 For low-risk documentation changes, the skill uses only the bug-checking step.
-Read the [full workflow](../skills/ai-code-review-triage/SKILL.md) for risk tiers
+Read the [full workflow](../skills/looks-good-to-ai/SKILL.md) for risk tiers
 and the report template.
 
 ## Why can tests pass while an export silently loses data?
@@ -57,7 +57,7 @@ examples, not customer testimonials or evidence of production adoption.
 With the [`skills`](https://github.com/vercel-labs/skills) CLI, for any supported agent:
 
 ```sh
-npx skills add laulauraluo/ai-code-review-triage
+npx skills add laulauraluo/looks-good-to-ai
 ```
 
 Then ask: “Review this AI-generated PR before I merge it.” [agents.md](agents.md)
@@ -70,7 +70,7 @@ Yes, and it can also run inside them. The code under review can come from any
 coding agent, and the reviewer can be any agent that loads Agent Skills. The one
 requirement that differs by host is Step 1's independent reviewer: it needs a
 sub-agent or a second session with a clean context.
-[references/subagents.md](../skills/ai-code-review-triage/references/subagents.md)
+[references/subagents.md](../skills/looks-good-to-ai/references/subagents.md)
 shows how each agent starts one.
 
 ## Does it replace linters, security scanners, or human review?
@@ -89,6 +89,6 @@ recovery. For an incomplete export, a code revert fixes future runs but does not
 repair files that downstream systems have already consumed.
 
 To report a problem with this skill, use the repository's
-[issue tracker](https://github.com/laulauraluo/ai-code-review-triage/issues).
+[issue tracker](https://github.com/laulauraluo/looks-good-to-ai/issues).
 Share a minimal, sanitized example, expected review behavior, actual output, and
 reproduction steps. Remove secrets and private source code before posting.

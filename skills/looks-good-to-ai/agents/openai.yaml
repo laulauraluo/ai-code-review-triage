@@ -1,3 +1,3 @@
 interface:
-  display_name: "AI Code Review Triage"
+  display_name: "Looks Good to AI"
   short_description: "Review AI-written PRs: catch bugs, align context, own the sign-off"

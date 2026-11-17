@@ -1,6 +1,12 @@
 # Changelog
 
-All notable changes to AI Code Review Triage are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+All notable changes to Looks Good to AI (formerly AI Code Review Triage) are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [2.0.0] - 2026-11-17
+
+### Changed
+
+- Renamed from AI Code Review Triage to Looks Good to AI. The repository, skill, plugin and extension are now `looks-good-to-ai`, and every install command uses the new name. GitHub redirects the old repository URL, but an installed copy under the old name has to be reinstalled.
 
 ## [1.2.0] - 2026-11-17
 

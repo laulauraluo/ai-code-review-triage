@@ -1,6 +1,8 @@
 <div align="center">
 
-# AI Code Review Triage
+# Looks Good to AI
+
+<sub>原名 AI Code Review Triage</sub>
 
 **AI 写代码比你读得快。别再硬读了，换个方式 review。**
 
@@ -12,9 +14,9 @@
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-1b1b19?style=flat-square)](https://agentskills.io/specification)
 [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-d97757?style=flat-square)](#claude-code-plugin)
 [![License: MIT](https://img.shields.io/badge/license-MIT-1b1b19?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.2.0-1b1b19?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.0.0-1b1b19?style=flat-square)](CHANGELOG.md)
 
-<img src="assets/before-after.svg" alt="同一个 AI 写的 PR：逐行 review 30 秒就 approve，上线后 session 30 秒过期；AI Code Review Triage 发现单位换算被删、之前被 revert 过、移动端写死旧值，要求修改" width="820">
+<img src="assets/before-after.svg" alt="同一个 AI 写的 PR：逐行 review 30 秒就 approve，上线后 session 30 秒过期；Looks Good to AI 发现单位换算被删、之前被 revert 过、移动端写死旧值，要求修改" width="820">
 
 </div>
 
@@ -27,7 +29,7 @@ Agent 提 PR 的速度远超人逐行 review 的速度。更麻烦的是，读�
 ## 快速开始
 
 ```sh
-npx skills add laulauraluo/ai-code-review-triage
+npx skills add laulauraluo/looks-good-to-ai
 ```
 
 [`skills`](https://github.com/vercel-labs/skills) CLI 会问你要装给哪些 agent。加 `-g` 装到用户目录（默认装到当前项目），加 `-a <agent>` 跳过提问，例如 `-a claude-code`、`-a codex`、`-a github-copilot`、`-a cursor`。
@@ -36,10 +38,10 @@ npx skills add laulauraluo/ai-code-review-triage
 
 | Agent | 命令 |
 |---|---|
-| Claude Code | `/plugin marketplace add laulauraluo/ai-code-review-triage`，再 `/plugin install ai-code-review-triage@ai-code-review-triage` |
-| Codex | `codex plugin marketplace add laulauraluo/ai-code-review-triage`，再 `codex plugin add ai-code-review-triage@ai-code-review-triage` |
-| GitHub Copilot CLI | `copilot plugin marketplace add laulauraluo/ai-code-review-triage`，再 `copilot plugin install ai-code-review-triage@ai-code-review-triage` |
-| Gemini CLI | `gemini extensions install https://github.com/laulauraluo/ai-code-review-triage` |
+| Claude Code | `/plugin marketplace add laulauraluo/looks-good-to-ai`，再 `/plugin install looks-good-to-ai@looks-good-to-ai` |
+| Codex | `codex plugin marketplace add laulauraluo/looks-good-to-ai`，再 `codex plugin add looks-good-to-ai@looks-good-to-ai` |
+| GitHub Copilot CLI | `copilot plugin marketplace add laulauraluo/looks-good-to-ai`，再 `copilot plugin install looks-good-to-ai@looks-good-to-ai` |
+| Gemini CLI | `gemini extensions install https://github.com/laulauraluo/looks-good-to-ai` |
 
 然后在 agent 里说：
 
@@ -47,7 +49,7 @@ npx skills add laulauraluo/ai-code-review-triage
 帮我 review 这个 AI 写的 PR，看能不能 merge。
 ```
 
-skill 会按描述自动触发。多数 agent 也支持 `/ai-code-review-triage` 直接调用，Codex 用 `$ai-code-review-triage`。每个 agent 的调用方式见 [docs/agents.md](docs/agents.md)。
+skill 会按描述自动触发。多数 agent 也支持 `/looks-good-to-ai` 直接调用，Codex 用 `$looks-good-to-ai`。每个 agent 的调用方式见 [docs/agents.md](docs/agents.md)。
 
 ## 思路
 
@@ -75,7 +77,7 @@ skill 会按描述自动触发。多数 agent 也支持 `/ai-code-review-triage`
 
 ## 安装
 
-skill 本体是 [`skills/ai-code-review-triage/`](skills/ai-code-review-triage) 这个文件夹，下面每个 agent 都原样加载它，只是放的位置不同。完整表格（每个 agent 读哪些目录、怎么调用、官方文档出处）见 [docs/agents.md](docs/agents.md)。
+skill 本体是 [`skills/looks-good-to-ai/`](skills/looks-good-to-ai) 这个文件夹，下面每个 agent 都原样加载它，只是放的位置不同。完整表格（每个 agent 读哪些目录、怎么调用、官方文档出处）见 [docs/agents.md](docs/agents.md)。
 
 | Agent | skills CLI | 或手动拷到（用户 · 项目） |
 |---|---|---|
@@ -99,8 +101,8 @@ skill 本体是 [`skills/ai-code-review-triage/`](skills/ai-code-review-triage) 
 **用 git 手动装：**
 
 ```sh
-git clone https://github.com/laulauraluo/ai-code-review-triage.git
-cp -r ai-code-review-triage/skills/ai-code-review-triage ~/.claude/skills/
+git clone https://github.com/laulauraluo/looks-good-to-ai.git
+cp -r looks-good-to-ai/skills/looks-good-to-ai ~/.claude/skills/
 ```
 
 把 `~/.claude/skills/` 换成表里对应 agent 的目录即可。
@@ -108,8 +110,8 @@ cp -r ai-code-review-triage/skills/ai-code-review-triage ~/.claude/skills/
 <a id="claude-code-plugin"></a>**Claude Code plugin**（在 Claude Code 里）：
 
 ```text
-/plugin marketplace add laulauraluo/ai-code-review-triage
-/plugin install ai-code-review-triage@ai-code-review-triage
+/plugin marketplace add laulauraluo/looks-good-to-ai
+/plugin install looks-good-to-ai@looks-good-to-ai
 ```
 
 ## 用法
@@ -122,7 +124,7 @@ cp -r ai-code-review-triage/skills/ai-code-review-triage ~/.claude/skills/
 
 skill 会输出一份三段式报告：挑错 / 上下文 / 签字，最后写明核对过什么、没核对什么。更多测试 prompt 见 [evals/evals.json](evals/evals.json)。
 
-第一步要求一个没见过写代码过程的 reviewer。各 agent 怎么开 fresh-context sub-agent，没有 sub-agent 时怎么办，见 [references/subagents.md](skills/ai-code-review-triage/references/subagents.md)。
+第一步要求一个没见过写代码过程的 reviewer。各 agent 怎么开 fresh-context sub-agent，没有 sub-agent 时怎么办，见 [references/subagents.md](skills/looks-good-to-ai/references/subagents.md)。
 
 ## 局限
 
