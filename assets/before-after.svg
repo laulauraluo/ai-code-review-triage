@@ -1,33 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" font-family="ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
-  <title>Before and after: the same AI-written PR, read line by line versus reviewed with Looks Good to AI</title>
-  <rect width="960" height="400" rx="16" fill="#faf9f5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <title>An AI-written PR whose tests pass and whose diff looks clean. Looks Good to AI finds four problems: a dropped unit conversion hidden in the diff, a past revert, a mobile client that hard-codes the old value, and a requirement mismatch. Read line by line, it ships and logs every user out after 30 seconds; with the skill, it is blocked before merge.</title>
+  <rect width="960" height="600" rx="16" fill="#faf9f5"/>
+  <text x="32" y="46" font-size="25" font-weight="700" fill="#1b1b19">Tests pass. The diff looks clean. <tspan fill="#d97757">The problems are outside it.</tspan></text>
 
-  <!-- shared diff -->
-  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15">
-    <rect x="32" y="28" width="896" height="74" rx="10" fill="#1b1b19"/>
-    <text x="52" y="58" fill="#e8a39b">-  SESSION_TIMEOUT = 30            # minutes</text>
-    <text x="52" y="84" fill="#9fd3a8">+  SESSION_TIMEOUT = 30000         # minutes</text>
-    <text x="560" y="58" fill="#8a8a85">auth/session.py · tests pass ✓</text>
-    <text x="560" y="84" fill="#8a8a85">written by an AI agent</text>
+  <g stroke="#d97757" stroke-width="2" stroke-dasharray="5 5" fill="none">
+    <path d="M300,190 C270,175 285,140 280,132"/>
+    <path d="M630,190 C660,175 676,140 682,132"/>
+    <path d="M300,260 C270,275 285,305 280,316"/>
+    <path d="M630,260 C660,275 676,305 682,316"/>
   </g>
 
-  <!-- before -->
-  <rect x="32" y="122" width="436" height="250" rx="12" fill="#ffffff" stroke="#d9d6cc"/>
-  <text x="56" y="158" font-size="13" font-weight="700" fill="#8a8a85" letter-spacing="1.5">LINE-BY-LINE REVIEW</text>
-  <text x="56" y="198" font-size="17" fill="#1b1b19">Code is clean. Tests pass.</text>
-  <text x="56" y="226" font-size="17" fill="#1b1b19">Looks like a simple config bump.</text>
-  <rect x="56" y="256" width="170" height="40" rx="8" fill="#e9f3ea"/>
-  <text x="74" y="282" font-size="17" font-weight="700" fill="#2f6b3a">✓ Approved, 30 s</text>
-  <text x="56" y="340" font-size="15" fill="#b23b2e">Ships: every session expires after 30 seconds.</text>
+  <rect x="293" y="157" width="344" height="146" rx="14" fill="#ffffff" stroke="#dddddd"/>
+  <rect x="300" y="164" width="330" height="132" rx="10" fill="#1b1b19"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5">
+    <text x="314" y="184" fill="#888888"># auth/config.py</text>
+    <text x="314" y="201" fill="#e8a39b">-SESSION_TIMEOUT = 30</text>
+    <text x="314" y="218" fill="#9fd3a8">+SESSION_TIMEOUT = 30000</text>
+    <text x="314" y="238" fill="#888888"># auth/session.py</text>
+    <text x="314" y="255" fill="#e8a39b">-  … &gt; SESSION_TIMEOUT * 60 * 1000</text>
+    <text x="314" y="272" fill="#9fd3a8">+  … &gt; SESSION_TIMEOUT</text>
+    <text x="314" y="289" fill="#888888">tests ✓ · +3 −1 · LGTM?</text>
+  </g>
 
-  <!-- after -->
-  <rect x="492" y="122" width="436" height="250" rx="12" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
-  <text x="516" y="158" font-size="13" font-weight="700" fill="#d97757" letter-spacing="1.5">LOOKS GOOD TO AI · RISK: HIGH</text>
-  <text x="516" y="196" font-size="15" fill="#1b1b19"><tspan font-weight="700">1 · Catch bugs</tspan>  fresh-context reviewer adds a</text>
-  <text x="516" y="218" font-size="15" fill="#1b1b19">boundary test: unit conversion dropped</text>
-  <text x="516" y="250" font-size="15" fill="#1b1b19"><tspan font-weight="700">2 · Align context</tspan>  reverted once before;</text>
-  <text x="516" y="272" font-size="15" fill="#1b1b19">mobile hard-codes 30 min; asked for one group</text>
-  <text x="516" y="304" font-size="15" fill="#1b1b19"><tspan font-weight="700">3 · Own the sign-off</tspan>  nobody can explain it</text>
-  <rect x="516" y="320" width="196" height="36" rx="8" fill="#fbe9e4"/>
-  <text x="532" y="344" font-size="16" font-weight="700" fill="#b23b2e">✕ Request changes</text>
+  <g font-size="13" fill="#1b1b19">
+    <rect x="32" y="74" width="250" height="66" rx="10" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+    <text x="44" y="94" font-family="Menlo, monospace" font-size="10.5" font-weight="700" fill="#d97757">1 · TEST · HIDDEN IN DIFF</text>
+    <text x="44" y="113">dropped unit conversion: sessions</text>
+    <text x="44" y="130">expire after <tspan font-weight="700" fill="#b23b2e">30 seconds</tspan></text>
+
+    <rect x="678" y="74" width="250" height="56" rx="10" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+    <text x="690" y="94" font-family="Menlo, monospace" font-size="10.5" font-weight="700" fill="#d97757">2 · git log --grep=revert</text>
+    <text x="690" y="115">same change was <tspan font-weight="700" fill="#b23b2e">reverted before</tspan></text>
+
+    <rect x="32" y="300" width="250" height="56" rx="10" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+    <text x="44" y="320" font-family="Menlo, monospace" font-size="10.5" font-weight="700" fill="#d97757">2 · grep callers</text>
+    <text x="44" y="341">mobile client <tspan font-weight="700" fill="#b23b2e">hard-codes 30 min</tspan></text>
+
+    <rect x="678" y="300" width="250" height="66" rx="10" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+    <text x="690" y="320" font-family="Menlo, monospace" font-size="10.5" font-weight="700" fill="#d97757">2 · REQUIREMENT CHECK</text>
+    <text x="690" y="339">asked for remember-me users;</text>
+    <text x="690" y="356">diff <tspan font-weight="700" fill="#b23b2e">changes everyone</tspan></text>
+  </g>
+
+  <rect x="32" y="410" width="436" height="160" rx="12" fill="#2a1513"/>
+  <text x="52" y="442" font-family="Menlo, monospace" font-size="12" font-weight="700" letter-spacing="1" fill="#e8a39b">READ LINE BY LINE · LGTM IN 30 s</text>
+  <text x="52" y="500" font-size="44" font-weight="800" fill="#ff6b5b">every user</text>
+  <text x="52" y="530" font-size="15" fill="#f0c9c4">logged out 30 seconds after signing in</text>
+
+  <rect x="493" y="411" width="434" height="158" rx="12" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+  <text x="513" y="442" font-family="Menlo, monospace" font-size="12" font-weight="700" letter-spacing="1" fill="#d97757">LOOKS GOOD TO AI · 3 · SIGN-OFF</text>
+  <text x="513" y="500" font-size="44" font-weight="800" fill="#1b1b19">blocked</text>
+  <text x="513" y="530" font-size="15" fill="#444444">before merge: nobody could explain it → request changes</text>
 </svg>

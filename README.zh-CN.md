@@ -22,7 +22,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-1b1b19?style=flat-square)](LICENSE)
 [![Version](https://img.shields.io/badge/version-2.0.0-1b1b19?style=flat-square)](CHANGELOG.md)
 
-<img src="assets/before-after.svg" alt="同一个 AI 写的 PR：逐行 review 30 秒就 approve，上线后 session 30 秒过期；Looks Good to AI 发现单位换算被删、之前被 revert 过、移动端写死旧值，要求修改" width="820">
+<img src="assets/before-after.svg" alt="一个 AI 写的 PR，测试全过，diff 看着很干净。Looks Good to AI 找出四个问题：藏在 diff 里的单位换算被删、之前被 revert 过、移动端写死旧值、需求不符。逐行读会让所有用户 30 秒就被登出；用 skill 则在 merge 前被拦下" width="820">
 
 </div>
 
