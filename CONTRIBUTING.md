@@ -7,7 +7,7 @@ Thanks for helping. This repository is one Markdown skill plus its docs, so most
 Link the skill folder into your agent's skills folder (move any installed copy out of the way first). From the repository root:
 
 ```sh
-ln -s "$PWD/skills/ai-code-review-triage" ~/.claude/skills/ai-code-review-triage
+ln -s "$PWD/skills/looks-good-to-ai" ~/.claude/skills/looks-good-to-ai
 ```
 
 Use the folder for your agent from [docs/agents.md](docs/agents.md) instead of `~/.claude/skills`, for example `~/.agents/skills` for Codex or `~/.cursor/skills` for Cursor. Then run one of the prompts in [`evals/evals.json`](evals/evals.json) and compare the answer with its `expected_output`.
@@ -38,6 +38,6 @@ CI runs the same script on every pull request.
 
 ## Adding an agent
 
-Open an [agent support issue](https://github.com/laulauraluo/ai-code-review-triage/issues/new?template=agent_support.yml) or send a pull request that adds a row to the table in [docs/agents.md](docs/agents.md) and, if the agent has sub-agents, to [`references/subagents.md`](skills/ai-code-review-triage/references/subagents.md). Include the user and project folders, how the agent calls a skill, and a link to its documentation.
+Open an [agent support issue](https://github.com/laulauraluo/looks-good-to-ai/issues/new?template=agent_support.yml) or send a pull request that adds a row to the table in [docs/agents.md](docs/agents.md) and, if the agent has sub-agents, to [`references/subagents.md`](skills/looks-good-to-ai/references/subagents.md). Include the user and project folders, how the agent calls a skill, and a link to its documentation.
 
 By taking part you agree to keep discussion respectful and on topic.

@@ -1,6 +1,8 @@
 <div align="center">
 
-# AI Code Review Triage
+# Looks Good to AI
+
+<sub>Formerly AI Code Review Triage</sub>
 
 **AI writes code faster than you can read it. Stop reading harder and review differently.**
 
@@ -12,8 +14,8 @@ Runs in Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Antigravity, Ope
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-1b1b19?style=flat-square)](https://agentskills.io/specification)
 [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-d97757?style=flat-square)](#claude-code-plugin)
 [![License: MIT](https://img.shields.io/badge/license-MIT-1b1b19?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.2.0-1b1b19?style=flat-square)](CHANGELOG.md)
-[![CI](https://github.com/laulauraluo/ai-code-review-triage/actions/workflows/ci.yml/badge.svg)](https://github.com/laulauraluo/ai-code-review-triage/actions/workflows/ci.yml)
+[![Version](https://img.shields.io/badge/version-2.0.0-1b1b19?style=flat-square)](CHANGELOG.md)
+[![CI](https://github.com/laulauraluo/looks-good-to-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/laulauraluo/looks-good-to-ai/actions/workflows/ci.yml)
 
 <a href="#quick-start">Quick start</a> ·
 <a href="#the-idea">The idea</a> ·
@@ -23,7 +25,7 @@ Runs in Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Antigravity, Ope
 <a href="#how-it-works">How it works</a> ·
 <a href="#limits">Limits</a>
 
-<img src="assets/before-after.svg" alt="The same AI-written PR: line-by-line review approves it in 30 seconds and ships 30-second sessions; AI Code Review Triage catches the dropped unit conversion, a past revert and a hard-coded mobile value, and requests changes" width="820">
+<img src="assets/before-after.svg" alt="The same AI-written PR: line-by-line review approves it in 30 seconds and ships 30-second sessions; Looks Good to AI catches the dropped unit conversion, a past revert and a hard-coded mobile value, and requests changes" width="820">
 
 </div>
 
@@ -36,7 +38,7 @@ Agent-written PRs pile up faster than anyone can review them line by line. Readi
 ## Quick start
 
 ```sh
-npx skills add laulauraluo/ai-code-review-triage
+npx skills add laulauraluo/looks-good-to-ai
 ```
 
 The [`skills`](https://github.com/vercel-labs/skills) CLI asks which agents to set up. Add `-g` to install for your user instead of this project, and `-a <agent>` to skip the question (`-a claude-code`, `-a codex`, `-a github-copilot`, `-a cursor`, …).
@@ -45,10 +47,10 @@ Or use the agent's own installer:
 
 | Agent | Command |
 |---|---|
-| Claude Code | `/plugin marketplace add laulauraluo/ai-code-review-triage` then `/plugin install ai-code-review-triage@ai-code-review-triage` |
-| Codex | `codex plugin marketplace add laulauraluo/ai-code-review-triage` then `codex plugin add ai-code-review-triage@ai-code-review-triage` |
-| GitHub Copilot CLI | `copilot plugin marketplace add laulauraluo/ai-code-review-triage` then `copilot plugin install ai-code-review-triage@ai-code-review-triage` |
-| Gemini CLI | `gemini extensions install https://github.com/laulauraluo/ai-code-review-triage` |
+| Claude Code | `/plugin marketplace add laulauraluo/looks-good-to-ai` then `/plugin install looks-good-to-ai@looks-good-to-ai` |
+| Codex | `codex plugin marketplace add laulauraluo/looks-good-to-ai` then `codex plugin add looks-good-to-ai@looks-good-to-ai` |
+| GitHub Copilot CLI | `copilot plugin marketplace add laulauraluo/looks-good-to-ai` then `copilot plugin install looks-good-to-ai@looks-good-to-ai` |
+| Gemini CLI | `gemini extensions install https://github.com/laulauraluo/looks-good-to-ai` |
 
 Then, in your agent:
 
@@ -56,7 +58,7 @@ Then, in your agent:
 Review this AI-generated PR before I merge it.
 ```
 
-The skill loads on its own from a request like that. Most agents also take `/ai-code-review-triage` to call it by name; Codex uses `$ai-code-review-triage`. [docs/agents.md](docs/agents.md) has the command for each agent.
+The skill loads on its own from a request like that. Most agents also take `/looks-good-to-ai` to call it by name; Codex uses `$looks-good-to-ai`. [docs/agents.md](docs/agents.md) has the command for each agent.
 
 ## The idea
 
@@ -91,7 +93,7 @@ Low-risk PRs only run Step 1. Medium-risk PRs run Steps 1 and 2. High-risk PRs (
 
 ## Install
 
-The skill is the folder [`skills/ai-code-review-triage/`](skills/ai-code-review-triage). Every agent below loads it unchanged; only the folder differs. [docs/agents.md](docs/agents.md) has the full table with every folder each agent reads, the way each agent calls a skill, and a link to each agent's own documentation.
+The skill is the folder [`skills/looks-good-to-ai/`](skills/looks-good-to-ai). Every agent below loads it unchanged; only the folder differs. [docs/agents.md](docs/agents.md) has the full table with every folder each agent reads, the way each agent calls a skill, and a link to each agent's own documentation.
 
 | Agent | skills CLI | Or copy the folder to (user · project) |
 |---|---|---|
@@ -117,11 +119,11 @@ The skill is the folder [`skills/ai-code-review-triage/`](skills/ai-code-review-
 
 <br>
 
-Clone the repository once and copy the skill folder into the agent's folder from the table, so that `SKILL.md` ends up at `<folder>/ai-code-review-triage/SKILL.md`:
+Clone the repository once and copy the skill folder into the agent's folder from the table, so that `SKILL.md` ends up at `<folder>/looks-good-to-ai/SKILL.md`:
 
 ```sh
-git clone https://github.com/laulauraluo/ai-code-review-triage.git
-cp -r ai-code-review-triage/skills/ai-code-review-triage ~/.claude/skills/
+git clone https://github.com/laulauraluo/looks-good-to-ai.git
+cp -r looks-good-to-ai/skills/looks-good-to-ai ~/.claude/skills/
 ```
 
 Swap `~/.claude/skills/` for any other folder in the table. For a project install, commit the copied folder so your team gets it too.
@@ -136,8 +138,8 @@ Swap `~/.claude/skills/` for any other folder in the table. For a project instal
 Inside Claude Code:
 
 ```text
-/plugin marketplace add laulauraluo/ai-code-review-triage
-/plugin install ai-code-review-triage@ai-code-review-triage
+/plugin marketplace add laulauraluo/looks-good-to-ai
+/plugin install looks-good-to-ai@looks-good-to-ai
 ```
 
 </details>
@@ -200,8 +202,8 @@ Both walkthroughs are invented scenarios that follow one PR through every step.
 
 ## How it works
 
-- **[`SKILL.md`](skills/ai-code-review-triage/SKILL.md)** is what the agent reads: the risk tiers, the three steps, the commands for history and callers, and the report template.
-- **Step 1 needs a second, clean context.** The session that wrote the code can't review it independently. [`references/subagents.md`](skills/ai-code-review-triage/references/subagents.md) shows how each agent starts a fresh reviewer, and what to do in agents that have none.
+- **[`SKILL.md`](skills/looks-good-to-ai/SKILL.md)** is what the agent reads: the risk tiers, the three steps, the commands for history and callers, and the report template.
+- **Step 1 needs a second, clean context.** The session that wrote the code can't review it independently. [`references/subagents.md`](skills/looks-good-to-ai/references/subagents.md) shows how each agent starts a fresh reviewer, and what to do in agents that have none.
 - **Step 2 needs a shell with `git`.** It runs `git log -S`, `git log --grep=revert` and `grep` to find history and callers the diff doesn't show.
 - **[`evals/evals.json`](evals/evals.json)** holds test prompts and what a good answer contains. CI checks that the skill's frontmatter follows the [Agent Skills spec](https://agentskills.io/specification) and that the pagination reproduction still runs.
 
@@ -211,8 +213,8 @@ Both walkthroughs are invented scenarios that follow one PR through every step.
 <br>
 
 ```text
-ai-code-review-triage/
-├── skills/ai-code-review-triage/   the skill (this folder is what gets installed)
+looks-good-to-ai/
+├── skills/looks-good-to-ai/   the skill (this folder is what gets installed)
 │   ├── SKILL.md                    workflow, risk tiers, report template
 │   ├── references/subagents.md     a fresh-context reviewer in each agent
 │   └── agents/openai.yaml          display name for the Codex and ChatGPT apps
@@ -250,8 +252,8 @@ This skill organizes the review and decides what has to be true before you appro
 
 Issues and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first: it covers linking a working copy into your agent, the checks CI runs, and what a change to `SKILL.md` has to keep.
 
-- [Report a problem](https://github.com/laulauraluo/ai-code-review-triage/issues/new?template=bug_report.yml)
-- [Add or fix an agent](https://github.com/laulauraluo/ai-code-review-triage/issues/new?template=agent_support.yml)
+- [Report a problem](https://github.com/laulauraluo/looks-good-to-ai/issues/new?template=bug_report.yml)
+- [Add or fix an agent](https://github.com/laulauraluo/looks-good-to-ai/issues/new?template=agent_support.yml)
 - [Changelog](CHANGELOG.md)
 
 ## Acknowledgments
