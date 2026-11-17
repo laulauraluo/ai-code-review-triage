@@ -103,7 +103,11 @@ Clicking approve is a signature. Before signing, the approver must be able to an
 - Accepted risks: <list with reasons>
 - Recommendation: approve | request changes | ask author first
 - Verification scope for the approval comment: <verified … / not verified …>
+
+<sub>Reviewed with [Looks Good to AI](https://github.com/laulauraluo/looks-good-to-ai)</sub>
 ```
+
+Keep the last line unless the user asks to leave it out.
 
 ## When not to use this
 

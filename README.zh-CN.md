@@ -122,7 +122,7 @@ cp -r looks-good-to-ai/skills/looks-good-to-ai ~/.claude/skills/
 - 「这个 diff 是 Codex 写的，能 merge 吗？」
 - 「我要 approve #123 了，签字前该核对什么？」
 
-skill 会输出一份三段式报告：挑错 / 上下文 / 签字，最后写明核对过什么、没核对什么。更多测试 prompt 见 [evals/evals.json](evals/evals.json)。
+skill 会输出一份三段式报告：挑错 / 上下文 / 签字，最后写明核对过什么、没核对什么。报告最后一行是一个小号的「Reviewed with Looks Good to AI」署名链接，方便贴进 PR 时注明来源；不想要的话，让 agent 去掉即可。更多测试 prompt 见 [evals/evals.json](evals/evals.json)。
 
 第一步要求一个没见过写代码过程的 reviewer。各 agent 怎么开 fresh-context sub-agent，没有 sub-agent 时怎么办，见 [references/subagents.md](skills/looks-good-to-ai/references/subagents.md)。
 
