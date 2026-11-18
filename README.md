@@ -6,7 +6,7 @@
 
 **AI writes code faster than you can read it. Stop reading harder and review differently.**
 
-An [Agent Skill](https://agentskills.io) that reviews AI-written pull requests by splitting "reading the code" into three separate jobs.<br>
+A code review [Agent Skill](https://agentskills.io) for AI-written pull requests. It splits "reading the code" into three separate jobs.<br>
 Runs in Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Antigravity, OpenCode, Windsurf, Cline, Roo Code, Kiro, Amp, Junie and Zed, and loads as plain context in Aider.
 
 <strong title="English" aria-label="English">🇬🇧</strong> ·
@@ -212,10 +212,11 @@ I wrote this change with you in this session. Now review it before I merge.
 
 ## Examples
 
-Both walkthroughs are invented scenarios that follow one PR through every step.
+One real PR, reviewed after the fact, and two invented walkthroughs that follow one PR through every step.
 
 | Walkthrough | What goes wrong | What finds it |
 |---|---|---|
+| [Real PR: LightBulb #413](examples/lightbulb-real-pr.md) | A Copilot PR to cut idle CPU/RAM, merged after dozens of review rounds with full coverage, reverted eight months later. | A blind Step 1 pass flagged the Settings bug users later reported; Step 2 found that nobody had measured CPU or RAM, the reason for the revert. |
 | [Session timeout](examples/session-timeout-walkthrough.md) | `30` → `30000` with the unit conversion dropped: sessions expire after 30 seconds, for every user. | A boundary test in Step 1; units, a past revert and a hard-coded mobile value in Step 2. |
 | [Pagination limit](examples/pagination-limit-walkthrough.md) | Page size `100` → `1000` against a provider that caps pages at 100: the export stops with 150 of 250 rows missing. | The provider contract in Step 2, and a standard-library Python reproduction you can run. |
 
@@ -240,7 +241,7 @@ looks-good-to-ai/
 ├── docs/
 │   ├── agents.md                   install and use in each agent, with sources
 │   └── review-ai-generated-code.md questions and answers
-├── examples/                       two invented end-to-end walkthroughs
+├── examples/                       one real PR and two invented walkthroughs
 ├── evals/evals.json                test prompts and expected answers
 ├── scripts/check.py                the checks CI runs
 ├── .claude-plugin/                 plugin and marketplace manifests (Claude Code, Codex, Copilot CLI)
@@ -253,7 +254,7 @@ looks-good-to-ai/
 ## Limits
 
 - **It is a review process, not a scanner.** It decides what has to be true before you approve. Run linters, type checkers and security tools inside Step 1; this skill does not replace them.
-- **It can't guarantee a PR is safe.** The examples are invented teaching cases, not a measured detection rate.
+- **It can't guarantee a PR is safe.** The real PR was picked because it was already reverted, and the other two examples are invented. None of them is a measured detection rate.
 - **It is slower than a skim, on purpose.** A high-risk PR gets a sub-agent pass, tests, history searches and a written sign-off. Low-risk PRs skip most of it.
 - **Step 1 is only as independent as the reviewer you give it.** In agents without sub-agents, open a new session by hand.
 
