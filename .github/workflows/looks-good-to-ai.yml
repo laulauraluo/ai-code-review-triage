@@ -10,5 +10,5 @@ jobs:
       contents: read
       pull-requests: write
       id-token: write
-    uses: laulauraluo/looks-good-to-ai/.github/workflows/review.yml@main
+    uses: ./.github/workflows/review.yml # this repo tests its own copy; other repos call it @main
     secrets: inherit
