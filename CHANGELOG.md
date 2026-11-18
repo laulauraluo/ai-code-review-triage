@@ -2,6 +2,16 @@
 
 All notable changes to Looks Good to AI (formerly AI Code Review Triage) are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- A real-PR example: [LightBulb #413](examples/lightbulb-real-pr.md), a Copilot change reverted eight months after merge, reviewed blind with the skill.
+
+### Changed
+
+- The skill description and README now open with "code review skill", the words people and agents search for.
+
 ## [2.0.0] - 2026-11-17
 
 ### Changed

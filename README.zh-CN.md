@@ -6,7 +6,7 @@
 
 **AI 写代码比你读得快。别再硬读了，换个方式 review。**
 
-一个 [Agent Skill](https://agentskills.io)：把「读代码」拆成三件事，专门用来 review AI 写的 PR。<br>
+一个专门 review AI 写的 PR 的 code review [Agent Skill](https://agentskills.io)：把「读代码」拆成三件事。<br>
 可以在 Claude Code、Codex、GitHub Copilot、Cursor、Gemini CLI、Antigravity、OpenCode、Windsurf、Cline、Roo Code、Kiro、Amp、Junie、Zed 里用，在 Aider 里可以作为只读 context 加载。
 
 <a href="README.md" title="English" aria-label="English">🇬🇧</a> ·
@@ -81,6 +81,8 @@ skill 会按描述自动触发。多数 agent 也支持 `/looks-good-to-ai` 直�
 
 第二个例子：[分页 limit walkthrough](examples/pagination-limit-walkthrough.md)。每页从 `100` 改成 `1000`，但上游最多返回 100 条，caller 误判已经结束，250 条数据只导出 100 条。包含可直接运行的 Python repro、API contract 核对和恢复范围。两个 walkthrough 都是虚构教学案例。
 
+真实案例：[LightBulb #413](examples/lightbulb-real-pr.md)。Copilot 写的 PR，想降低 idle CPU/RAM，经过几十轮 review、coverage 全绿后 merge，八个月后被 revert。盲审的 Step 1 标出了用户后来报的 Settings bug；Step 2 发现没人测过 CPU 和 RAM，这正是 revert 的理由。
+
 ## 安装
 
 skill 本体是 [`skills/looks-good-to-ai/`](skills/looks-good-to-ai) 这个文件夹，下面每个 agent 都原样加载它，只是放的位置不同。完整表格（每个 agent 读哪些目录、怎么调用、官方文档出处）见 [docs/agents.md](docs/agents.md)。
@@ -135,7 +137,7 @@ skill 会输出一份三段式报告：挑错 / 上下文 / 签字，最后写�
 ## 局限
 
 - 这是 review 流程，不是 scanner。linter、type check、security 工具放在第一步里跑，skill 不替代它们，也不替代人的 merge 决策。
-- 两个例子是虚构教学案例，不代表测出来的检出率。
+- 真实案例是事后挑的已 revert PR，另外两个是虚构教学案例，都不代表检出率。
 - 刻意比扫一眼慢：高风险 PR 要跑 sub-agent、测试、查历史、写签字范围。
 
 [Review 指南与 FAQ](docs/review-ai-generated-code.md) 回答了：AI 写的 PR 该查什么、为什么测试通过仍会漏数据、如何核对 caller 和上游 contract。
