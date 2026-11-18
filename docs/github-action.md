@@ -34,4 +34,5 @@
 
 - **Pull requests from forks are skipped.** GitHub does not pass secrets to them, and running a model on untrusted code with write access is unsafe. Review those by hand or from your own agent.
 - Drafts are skipped until they are marked ready for review.
+- **No key, no review.** If `ANTHROPIC_API_KEY` isn't set, the review job is skipped instead of failing, so the check stays green.
 - Each run uses your API key, so it costs tokens on every push to a pull request.

@@ -7,12 +7,24 @@ on:
   workflow_call:
     secrets:
       ANTHROPIC_API_KEY:
-        required: true
+        required: false
 
 jobs:
+  # Secrets can't be read in a job's `if`, so a tiny job reports whether the key is set.
+  key:
+    runs-on: ubuntu-latest
+    outputs:
+      present: ${{ steps.check.outputs.present }}
+    steps:
+      - id: check
+        env:
+          KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: echo "present=${{ env.KEY != '' }}" >> "$GITHUB_OUTPUT"
+
   review:
-    # Secrets are not available to pull requests from forks, so skip them.
-    if: github.event.pull_request.head.repo.full_name == github.repository && !github.event.pull_request.draft
+    needs: key
+    # Skip without a key (instead of failing), for forks (no secrets) and for drafts.
+    if: needs.key.outputs.present == 'true' && github.event.pull_request.head.repo.full_name == github.repository && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     permissions:
       contents: read
